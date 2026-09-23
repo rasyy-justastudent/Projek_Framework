@@ -81,7 +81,7 @@
     </div>
 </section>
 
-<!-- Menu Listing & Interactive Sorting Section -->
+<!-- Menu Listing & Dynamic Sorting Section -->
 <section id="menu" class="py-16 bg-wood-50/50 border-y border-wood-800/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -204,8 +204,8 @@
                             </div>
 
                             <div class="flex items-center gap-2">
-                                <button onclick="openDetailModal(<?= $item['id'] ?>)" class="bg-wood-100 hover:bg-wood-200 text-wood-800 p-2.5 rounded-xl transition-colors text-xs font-bold" title="Lihat Detail">
-                                    <i class="fa-solid fa-eye"></i>
+                                <button onclick="openDetailModal(<?= $item['id'] ?>)" class="bg-wood-100 hover:bg-wood-200 text-wood-800 p-2.5 rounded-xl transition-colors text-xs font-bold" title="Lihat Detail Halaman">
+                                    <i class="fa-solid fa-eye"></i> Detail
                                 </button>
                                 <button onclick="addToCart(<?= $item['id'] ?>, '<?= esc(addslashes($item['name'])) ?>', <?= $item['price'] ?>, '<?= esc($item['image']) ?>')" class="wood-gradient text-white px-4 py-2.5 rounded-xl font-extrabold text-xs shadow-md hover:shadow-lg transition-all flex items-center gap-1.5">
                                     <i class="fa-solid fa-cart-plus text-amber-300"></i> + Tambah
@@ -323,6 +323,49 @@
     </div>
 </section>
 
+<!-- Heritage Section ("Warisan Kuliner Sunda") -->
+<section id="tentang" class="py-16 bg-wood-50/70 border-t border-wood-800/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <span class="text-xs font-extrabold uppercase tracking-widest text-amber-700 block mb-2">FILOSOFI & TRADISI</span>
+        <h2 class="text-3xl font-black text-wood-900 mb-4">Mengapa Karedok Jawa Barat Begitu Spesial?</h2>
+        <p class="text-sm text-amber-900/80 max-w-2xl mx-auto leading-relaxed mb-12">
+            Berbeda dengan Gado-Gado atau Lotek yang dimasak matang, **Karedok** disajikan 100% dari sayuran mentah segar yang kaya akan serat, enzim nutrisi murni, dan aroma segar kemangi surawung khas tanah Pasundan.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+            <div class="bg-white p-6 rounded-3xl border border-wood-800/10 shadow-sm space-y-3">
+                <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-sunda-green flex items-center justify-center text-xl font-black">
+                    <i class="fa-solid fa-leaf"></i>
+                </div>
+                <h3 class="font-extrabold text-base text-wood-900">Sayuran Mentah Segar (Raw Veggies)</h3>
+                <p class="text-xs text-amber-900/70 leading-relaxed">
+                    Sayuran mentah dipetik segar setiap pagi langsung dari petani daerah Parahyangan untuk menjaga rasa krispi alami.
+                </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-3xl border border-wood-800/10 shadow-sm space-y-3">
+                <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center text-xl font-black">
+                    <i class="fa-solid fa-mortar-pestle"></i>
+                </div>
+                <h3 class="font-extrabold text-base text-wood-900">Sensasi Ulekan Kencur Aromatik</h3>
+                <p class="text-xs text-amber-900/70 leading-relaxed">
+                    Rahasia kelezatan Karedok ada pada kencur pilihan yang diulek bersama kacang tanah sangrai gurih dan gula aren asli Ciamis.
+                </p>
+            </div>
+
+            <div class="bg-white p-6 rounded-3xl border border-wood-800/10 shadow-sm space-y-3">
+                <div class="w-12 h-12 rounded-2xl bg-red-100 text-sunda-red flex items-center justify-center text-xl font-black">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+                <h3 class="font-extrabold text-base text-wood-900">Sehat, Organik & Bernutrisi High-Level</h3>
+                <p class="text-xs text-amber-900/70 leading-relaxed">
+                    Menciptakan tren baru makanan sehat siap saji (Healthy Fast Food) khas Indonesia yang tak kalah dengan salad barat.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Detail View Modal Container (Populated via AJAX) -->
 <div id="detail-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div id="detail-modal-body" class="bg-ivory rounded-3xl max-w-xl w-full overflow-hidden shadow-2xl border border-wood-800/20 max-h-[90vh] flex flex-col">
@@ -375,74 +418,7 @@
     }
 
     function openDetailModal(id) {
-        fetch('<?= base_url('/karedok/detail/') ?>/' + id, {
-            headers: { 'X-Requested-With': 'XMLHttpRequest' }
-        })
-        .then(res => res.json())
-        .then(res => {
-            if (res.status) {
-                const d = res.data;
-                let reviewsHtml = '';
-                if (d.reviews && d.reviews.length > 0) {
-                    d.reviews.forEach(r => {
-                        reviewsHtml += `
-                        <div class="bg-white p-3 rounded-xl border border-wood-800/10 text-xs">
-                            <div class="flex justify-between font-bold text-wood-900 mb-1">
-                                <span>${r.reviewer_name}</span>
-                                <span class="text-sunda-gold">⭐ ${r.rating}/5</span>
-                            </div>
-                            <p class="text-amber-900/70 italic">"${r.comment}"</p>
-                        </div>`;
-                    });
-                } else {
-                    reviewsHtml = '<p class="text-xs text-amber-800/50 italic">Belum ada ulasan untuk menu ini.</p>';
-                }
-
-                document.getElementById('detail-modal-body').innerHTML = `
-                <div class="relative">
-                    <img src="<?= base_url('uploads/karedok/') ?>/${d.image}" class="w-full h-56 object-cover">
-                    <button onclick="closeDetailModal()" class="absolute top-4 right-4 bg-black/60 text-white w-8 h-8 rounded-full flex items-center justify-center text-lg">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                    <span class="absolute bottom-4 left-4 bg-sunda-red text-white text-xs font-extrabold px-3 py-1 rounded-lg">
-                        ${d.badge || 'SPESIAL'}
-                    </span>
-                </div>
-                <div class="p-6 overflow-y-auto space-y-4">
-                    <div>
-                        <span class="text-[10px] font-bold text-amber-700 uppercase tracking-widest">${d.category_name}</span>
-                        <h3 class="text-2xl font-black text-wood-900">${d.name}</h3>
-                        <div class="flex items-center gap-3 text-xs font-bold text-sunda-green mt-1">
-                            <span class="text-xl text-sunda-red font-black">Rp ${parseFloat(d.price).toLocaleString('id-ID')}</span>
-                            <span>• ⭐ ${d.rating} (${d.reviews_count} ulasan)</span>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h4 class="text-xs font-bold text-wood-800 uppercase tracking-wider mb-1">Deskripsi Kuliner</h4>
-                        <p class="text-xs text-amber-900/80 leading-relaxed">${d.description}</p>
-                    </div>
-
-                    <div>
-                        <h4 class="text-xs font-bold text-wood-800 uppercase tracking-wider mb-1">Komposisi Bahan & Bumbu</h4>
-                        <p class="text-xs text-amber-900/80 bg-wood-50 p-3 rounded-xl border border-wood-800/10">${d.ingredients || 'Sayuran mentah pilihan & bumbu kacang kencur.'}</p>
-                    </div>
-
-                    <div>
-                        <h4 class="text-xs font-bold text-wood-800 uppercase tracking-wider mb-2">Ulasan Pelanggan</h4>
-                        <div class="space-y-2 max-h-36 overflow-y-auto pr-1">
-                            ${reviewsHtml}
-                        </div>
-                    </div>
-
-                    <button onclick="addToCart(${d.id}, '${d.name.replace(/'/g, "\\'")}', ${d.price}, '${d.image}'); closeDetailModal();" class="w-full wood-gradient text-white py-3 rounded-xl font-extrabold text-sm shadow-lg hover:shadow-xl">
-                        + Tambahkan Ke Keranjang (Rp ${parseFloat(d.price).toLocaleString('id-ID')})
-                    </button>
-                </div>`;
-
-                document.getElementById('detail-modal').classList.remove('hidden');
-            }
-        });
+        window.location.href = '<?= base_url('/karedok/detail/') ?>/' + id;
     }
 
     function closeDetailModal() {
