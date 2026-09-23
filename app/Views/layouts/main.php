@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= esc($title ?? 'KAREDOK.CO - Kuliner Khas Jawa Barat') ?></title>
+    <title><?= esc($title ?? 'AL FARIDZI KAREDOK - Kuliner Khas Jawa Barat') ?></title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Plus Jakarta Sans -->
@@ -63,38 +63,39 @@
         <span>Gunakan Kode Promo <code class="bg-amber-950/60 text-amber-300 px-2 py-0.5 rounded font-mono border border-amber-700/50">KAREDOKJUARA</code> Potongan Rp 10.000!</span>
     </div>
 
-    <!-- Main Navigation Header -->
-    <header class="sticky top-0 z-40 ivory-glass border-b border-wood-800/10 shadow-sm transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <a href="<?= base_url() ?>" class="flex items-center gap-3 group">
-                <div class="w-12 h-12 rounded-2xl wood-gradient flex items-center justify-center text-amber-300 font-extrabold text-2xl shadow-lg group-hover:scale-105 transition-transform duration-300 border-2 border-amber-600/30">
-                    K
-                </div>
-                <div>
-                    <span class="text-2xl font-black tracking-tight text-wood-800 block leading-none">KAREDOK<span class="text-sunda-green">.CO</span></span>
-                    <span class="text-[10px] font-bold text-amber-700 uppercase tracking-widest block mt-0.5">Kuliner Khas Jawa Barat</span>
+    <!-- Main Navigation Header (Floating Capsule Burger Bangor Style) -->
+    <header class="sticky top-3 z-40 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-2">
+        <div class="wood-gradient text-white rounded-full px-6 sm:px-8 py-3.5 shadow-2xl border-2 border-amber-600/30 flex items-center justify-between backdrop-blur-md">
+            <!-- Brand Logo (Pure Typography) -->
+            <a href="<?= base_url() ?>" class="flex flex-col group py-0.5">
+                <div class="flex items-center gap-2">
+                    <span class="text-lg sm:text-2xl font-black tracking-tighter text-white group-hover:text-amber-300 transition-colors uppercase">
+                        AL FARIDZI <span class="text-emerald-400 font-black">KAREDOK</span>
+                    </span>
+                    <span class="bg-sunda-red text-white text-[9px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider shadow-xs transform -rotate-3 group-hover:rotate-0 transition-transform">
+                        SUNDA
+                    </span>
                 </div>
             </a>
 
             <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center gap-8 text-sm font-bold text-wood-900">
-                <a href="<?= base_url('#menu') ?>" class="hover:text-sunda-green transition-colors">Daftar Menu</a>
-                <a href="<?= base_url('#racik') ?>" class="hover:text-sunda-green transition-colors flex items-center gap-1.5 text-sunda-green bg-sunda-lightgreen/70 px-3 py-1 rounded-full border border-sunda-green/30">
+            <nav class="hidden md:flex items-center gap-8 text-sm font-bold text-amber-100">
+                <a href="<?= base_url('#menu') ?>" class="hover:text-amber-300 transition-colors">Daftar Menu</a>
+                <a href="<?= base_url('#racik') ?>" class="hover:text-amber-300 transition-colors flex items-center gap-1.5 text-amber-300 bg-white/10 px-3.5 py-1.5 rounded-full border border-amber-400/30">
                     <i class="fa-solid fa-mortar-pestle"></i> Racik Karedok
                 </a>
-                <a href="<?= base_url('#tentang') ?>" class="hover:text-sunda-green transition-colors">Warisan Sunda</a>
-                <a href="<?= base_url('/admin') ?>" class="hover:text-wood-800 transition-colors text-xs bg-wood-100 px-3 py-1.5 rounded-lg border border-wood-800/20">
-                    <i class="fa-solid fa-sliders text-wood-800 mr-1"></i> Admin Panel
+                <a href="<?= base_url('#tentang') ?>" class="hover:text-amber-300 transition-colors">Warisan Sunda</a>
+                <a href="<?= base_url('/admin') ?>" class="hover:text-white transition-colors text-xs bg-amber-400/20 text-amber-300 px-3 py-1.5 rounded-full border border-amber-400/30">
+                    <i class="fa-solid fa-sliders mr-1"></i> Admin Panel
                 </a>
             </nav>
 
             <!-- Actions & Cart Drawer Trigger -->
-            <div class="flex items-center gap-3">
-                <button onclick="toggleCartDrawer()" class="relative wood-gradient text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-md hover:shadow-xl hover:scale-105 transition-all flex items-center gap-2.5">
-                    <i class="fa-solid fa-basket-shopping text-amber-300 text-base"></i>
-                    <span class="hidden sm:inline">Keranjang</span>
-                    <span id="cart-badge-count" class="bg-sunda-red text-white text-xs font-black w-5 h-5 rounded-full flex items-center justify-center">0</span>
+            <div class="flex items-center">
+                <button onclick="toggleCartDrawer()" class="bg-white text-wood-900 px-5 py-2 rounded-full font-black text-sm shadow-lg hover:bg-amber-300 hover:scale-105 transition-all inline-flex items-center gap-2">
+                    <i class="fa-solid fa-basket-shopping text-sunda-green"></i>
+                    <span>Keranjang</span>
+                    <span id="cart-badge-count" class="bg-sunda-red text-white text-[11px] font-black w-5 h-5 rounded-full inline-flex items-center justify-center shrink-0">0</span>
                 </button>
             </div>
         </div>
@@ -236,9 +237,18 @@
     <footer class="wood-gradient text-amber-100 pt-16 pb-8 border-t border-amber-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-10">
             <div class="space-y-4">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-amber-300 text-wood-900 flex items-center justify-center font-black text-xl">K</div>
-                    <span class="text-2xl font-black tracking-tight text-white">KAREDOK<span class="text-emerald-400">.CO</span></span>
+                <div class="flex flex-col">
+                    <div class="flex items-center gap-2">
+                        <span class="text-2xl font-black tracking-tighter text-white uppercase">
+                            AL FARIDZI <span class="text-emerald-400">KAREDOK</span>
+                        </span>
+                        <span class="bg-emerald-500 text-wood-950 text-[9px] font-black px-2 py-0.5 rounded uppercase tracking-wider">
+                            SUNDA
+                        </span>
+                    </div>
+                    <span class="text-[10px] font-extrabold text-amber-300 uppercase tracking-[0.2em] mt-0.5">
+                        Kuliner Khas Jawa Barat
+                    </span>
                 </div>
                 <p class="text-xs text-amber-200/80 leading-relaxed">
                     Website Resmi Promosi Makanan Khas Jawa Barat. Mengangkat cita rasa otentik Karedok Sunda dengan bahan raw veggie segar, kencur aromatik, dan saus kacang sangrai berstandar dunia.
@@ -282,7 +292,7 @@
         </div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-amber-900/60 flex flex-col md:flex-row justify-between items-center text-xs text-amber-300/60">
-            <p>© 2026 KAREDOK.CO - Website Modern Promosi Makanan Khas Daerah Indonesia (Jawa Barat). All rights reserved.</p>
+            <p>© 2026 AL FARIDZI KAREDOK - Website Modern Promosi Makanan Khas Daerah Indonesia (Jawa Barat). All rights reserved.</p>
             <p class="mt-2 md:mt-0 font-medium">Dibuat dengan CodeIgniter 4 + Tailwind CSS + MySQL</p>
         </div>
     </footer>

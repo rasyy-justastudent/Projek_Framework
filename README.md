@@ -1,69 +1,92 @@
-# CodeIgniter 4 Application Starter
+# Website Modern Promosi Makanan Khas Daerah Indonesia: Karedok (Jawa Barat) 🥗🌶️
 
-## What is CodeIgniter?
+> **AL FARIDZI KAREDOK** - Mengangkat Industri Makanan Khas Jawa Barat ke Level World-Class & Modern Fast Food Experience (Inspirasi: KFC, Burger Bangor, Pizza Hut, Five Guys).
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+![Karedok Banner](public/uploads/karedok/karedok_hero.jpg)
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+---
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## 📌 Tema Penetapan & Spesifikasi
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+- **Daerah**: Jawa Barat
+- **Makanan Khas**: Karedok (Raw Vegetable Salad dengan Bumbu Kacang Kencur Aromatik)
+- **Primary Color Palette**: `#FFFFF0` (Ivory Cream Background) & `#78350F` (Amber Wood Brown)
+- **Framework & Tech Stack**: CodeIgniter 4 + Tailwind CSS + MySQL Database
+- **GitHub Repository**: [Projek_Framework](https://github.com/rasyy-justastudent/Projek_Framework)
 
-## Installation & updates
+---
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+## 🌟 Fitur Utama Website
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+1. **Fast Food UI & Visual Excellence**:
+   - Tampilan ultra-modern berstandar restoran fast food internasional.
+   - Hero banner interaktif dengan foto makanan AI HD beresolusi tinggi.
+   - Sistem Keranjang Belanja (Cart Drawer) & Modal Checkout interaktif.
 
-## Setup
+2. **Fitur Pengurutan (Dynamic Sorting)**:
+   - **Harga**: Terendah → Tertinggi & Tertinggi → Terendah
+   - **Tingkat Pedas**: Terpedas (Level 1-5 🌶️)
+   - **Rating Pelanggan**: Terfavorit (Rating ⭐)
+   - **Alphabetical**: Nama A-Z
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+3. **Validasi Form Strict (CodeIgniter 4 & Client-Side)**:
+   - Form Tambah & Edit Menu Karedok dengan pesan validasi komprehensif.
+   - Form Checkout Pengiriman dengan validasi input (Nama, Telepon, Alamat, Metode Pembayaran).
+   - Sistem Kode Promo (`KAREDOKJUARA` potongan Rp 10.000 & `SUNDA50` potongan Rp 5.000).
 
-## Important Change with index.php
+4. **Racik Karedok Sendiri (Custom Order Builder)**:
+   - Kustomisasi sayuran mentah pilihan (Tauge, Kacang Panjang, Terong Hijau, Kol, Kemangi, Leunca).
+   - Slider tingkat pedas cabai rawit real-time (Level 0 - 5).
+   - Tambahan Topping Sultan (Lontong Pandan, Tahu & Tempe Goreng, Telur Asin Masir).
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+5. **Halaman Detail & Manajemen Admin (CRUD)**:
+   - Halaman detail terpisah untuk tiap varian Karedok.
+   - Panel Admin (`/admin`) untuk mengelola menu (Create, Read, Update, Delete).
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+---
 
-**Please** read the user guide for a better explanation of how CI4 works!
+## 📊 Tahapan Commit Workflow
 
-## Repository Management
+```bash
+1. Commit 1: "Setup database & migration Karedok"
+2. Commit 2: "CRUD dasar + tampilan Tailwind Karedok"
+3. Commit 3: "Halaman detail + fitur tambahan + gambar AI Karedok"
+4. Commit 4: "Finalisasi Karedok" & Push ke GitHub
+```
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+---
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+## 🛠️ Instalasi & Cara Menggunakan
 
-## Server Requirements
+1. **Clone Repository**:
+   ```bash
+   git clone https://github.com/rasyy-justastudent/Projek_Framework.git
+   cd Projek_Framework
+   ```
 
-PHP version 8.2 or higher is required, with the following extensions installed:
+2. **Setup Konfigurasi Database (`.env`)**:
+   ```ini
+   database.default.hostname = localhost
+   database.default.database = db_karedok_jabar
+   database.default.username = root
+   database.default.password = 
+   database.default.DBDriver = MySQLi
+   ```
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+3. **Jalankan Migrasi & Database Seeder**:
+   ```bash
+   php spark db:create db_karedok_jabar
+   php spark migrate
+   php spark db:seed KaredokSeeder
+   ```
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - The end of life date for PHP 8.1 was December 31, 2025.
-> - If you are still using below PHP 8.2, you should upgrade immediately.
-> - The end of life date for PHP 8.2 will be December 31, 2026.
+4. **Jalankan Server Lokal**:
+   ```bash
+   php spark serve --port 8080
+   ```
+   Buka di peramban: `http://localhost:8080`
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+---
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+## 👨‍💻 Dibuat Oleh
+Dibuat untuk Tugas Framework Website Promosi Kuliner Khas Daerah Indonesia - **Jawa Barat (Karedok)**.

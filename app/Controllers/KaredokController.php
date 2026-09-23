@@ -37,7 +37,7 @@ class KaredokController extends BaseController
         $featured   = $this->karedokModel->where('is_featured', 1)->first();
 
         $data = [
-            'title'            => 'KAREDOK.CO - Kuliner Khas Jawa Barat Level World-Class',
+            'title'            => 'AL FARIDZI KAREDOK - Kuliner Khas Jawa Barat Level World-Class',
             'items'            => $items,
             'categories'       => $categories,
             'activeCategory'   => $categorySlug,
@@ -74,7 +74,7 @@ class KaredokController extends BaseController
         }
 
         return view('karedok/detail', [
-            'title' => $item['name'] . ' - KAREDOK.CO',
+            'title' => $item['name'] . ' - AL FARIDZI KAREDOK',
             'item'  => $item,
         ]);
     }
